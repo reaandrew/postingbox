@@ -1,0 +1,5 @@
+PO_BOX
+
+Simple HTTP Notification console which can e used as the url for any HTTP notification service.  This will simply append any JSON based notification.
+
+It uses a ?ref querystring parameter to identity a key for the notifications.  Similary, the same url should be given to the HTTP publisher who should use the POST Verb.
