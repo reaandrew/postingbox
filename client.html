@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title>POSTING BOX</title>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <style type="text/css">
+    * {font-family:"courier new", arial, serif;}
+    .line{ clear : both; }
+    .lineNo { float:left; width: 2em; }
+    .data { float:left; }
+  </style>
+ </head>
+ <body>
+    <div id="data"></div>
+    <script type="text/javascript">
+        function querystring(key) {
+            var re=new RegExp('(?:\\?|&)'+key+'=(.*?)(?=&|$)','gi');
+            var r=[], m;
+            while ((m=re.exec(document.location.search)) != null) r.push(m[1]);
+            return r;
+        }
+        window.onload = function(){
+            var ref = querystring('ref');
+            var socket = io.connect('/');
+            console.log("emitting to join room " + ref);
+            socket.emit('room', ref);
+            var started = false, line = 0;
+            console.log("started");
+            var element = document.getElementById("data");
+            element.innerHTML += "waiting";
+            socket.on('data', function(data){
+                console.log("got data");
+                ++line;
+                var dataLine ='<div class="line"><div class="lineNo">'+ line + '</div><div class="data">'+data+'</div></div>';
+                if(!started){
+                    element.innerHTML = dataLine;
+                    started = true;
+                }else{
+                    element.innerHTML += dataLine;
+                }
+            });
+        }
+    </script>
+ </body>
+</html>

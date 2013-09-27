@@ -1,13 +1,27 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app.js"
-  },
+  "name": "postingbox",
+  "version": "1.0.0",
+  "description": "A simple script which collects https posts and writes out to the brower through websockets using socket.io.  A unique ref must be supplied using the \"ref\" querystring parameter.  The ref value provided in the browser must match that being used in the post.  A GUID might be a good idea for this.",
+  "main": "server.js",
   "dependencies": {
-    "express": "~3.4.0",
-    "jade": "~0.35.0",
     "socket.io": "~0.9.16"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/REAANDREW/postingbox.git"
+  },
+  "keywords": [
+    "http",
+    "websockets"
+  ],
+  "author": "Andrew Rea",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/REAANDREW/postingbox/issues"
   }
 }
