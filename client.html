@@ -23,14 +23,11 @@
         window.onload = function(){
             var ref = querystring('ref');
             var socket = io.connect('/');
-            console.log("emitting to join room " + ref);
             socket.emit('room', ref);
             var started = false, line = 0;
-            console.log("started");
             var element = document.getElementById("data");
             element.innerHTML += "waiting";
             socket.on('data', function(data){
-                console.log("got data");
                 ++line;
                 var dataLine ='<div class="line"><div class="lineNo">'+ line + '</div><div class="data">'+data+'</div></div>';
                 if(!started){
