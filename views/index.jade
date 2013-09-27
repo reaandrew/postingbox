@@ -4,10 +4,11 @@ block content
   p#data waiting...
     script.
         $(document).ready(function(){
-          var socket = io.connect('http://192.168.255.135:3000');
+          var ref = querystring('ref');
+          var socket = io.connect('http://192.168.255.135:3000/');
           var started = false;
           var line = 0;
-          socket.on(querystring('ref'), function (data) {
+          socket.on(ref, function (data) {
             ++line;
             if(!started){
                 $("#data").html('<div class="line"><div class="linenumber">'+line+'</div><div class="notif">'+data+'</div></div>');
